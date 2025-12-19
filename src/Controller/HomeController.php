@@ -5,29 +5,36 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractController
+class HomeController extends AbstractController
 {
-    #[Route('/connexion', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    #[Route('/', name: 'app_home')]
+    public function index(): Response
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('app_home');
-        }
-
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error,
-        ]);
+        return $this->render('home/index.html.twig');
     }
 
-    #[Route('/deconnexion', name: 'app_logout')]
-    public function logout(): void
+    #[Route('/cgu', name: 'app_cgu')]
+    public function cgu(): Response
     {
-        throw new \LogicException('Cette méthode peut être vide - elle sera interceptée par la clé de déconnexion de votre pare-feu.');
+        return $this->render('legal/cgu.html.twig');
+    }
+
+    #[Route('/cgv', name: 'app_cgv')]
+    public function cgv(): Response
+    {
+        return $this->render('legal/cgv.html.twig');
+    }
+
+    #[Route('/politique-confidentialite', name: 'app_confidentialite')]
+    public function confidentialite(): Response
+    {
+        return $this->render('legal/confidentialite.html.twig');
+    }
+
+    #[Route('/qui-sommes-nous', name: 'app_about')]
+    public function about(): Response
+    {
+        return $this->render('legal/about.html.twig');
     }
 }

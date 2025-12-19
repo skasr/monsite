@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Profil - SportZone{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-sport text-white">
+                <h3 class="mb-0">👤 Mon Profil</h3>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Email :</strong></div>
+                    <div class="col-md-8">{{ user.email }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Nom :</strong></div>
+                    <div class="col-md-8">{{ user.nom }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Prénom :</strong></div>
+                    <div class="col-md-8">{{ user.prenom }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Téléphone :</strong></div>
+                    <div class="col-md-8">{{ user.telephone ?? 'Non renseigné' }}</div>
+                </div>
+
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_profile_edit') }}" class="btn btn-primary">✏️ Modifier mon profil</a>
+                    
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                        🗑️ Supprimer mon compte
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form method="post" action="{{ path('app_profile_delete') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

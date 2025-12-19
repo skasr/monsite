@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - SportZone{% endblock %}
+
+{% block body %}
+<div class="text-center py-5">
+    <h1 class="display-4 mb-4">Bienvenue sur SportZone</h1>
+    <p class="lead mb-5">Votre plateforme dédiée au sport et à la performance</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">⚽ Actualités</h3>
+                    <p class="card-text">Retrouvez les dernières actualités sportives et partagez vos analyses</p>
+                    <a href="{{ path('app_article_index') }}" class="btn btn-primary">Voir les articles</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">🏋️ Communauté</h3>
+                    <p class="card-text">Rejoignez notre communauté de passionnés de sport</p>
+                    {% if not app.user %}
+                        <a href="{{ path('app_register') }}" class="btn btn-success">S'inscrire</a>
+                    {% else %}
+                        <a href="{{ path('app_profile') }}" class="btn btn-primary">Mon profil</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title">📧 Contact</h3>
+                    <p class="card-text">Une question ? N'hésitez pas à nous contacter</p>
+                    <a href="{{ path('app_contact') }}" class="btn btn-primary">Nous contacter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <h2 class="mb-4">Pourquoi SportZone ?</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <h4>🎯 Passionnés</h4>
+                <p>Une communauté de vrais passionnés de sport</p>
+            </div>
+            <div class="col-md-3">
+                <h4>📊 Analyses</h4>
+                <p>Des analyses détaillées et pertinentes</p>
+            </div>
+            <div class="col-md-3">
+                <h4>🔥 Actualité</h4>
+                <p>Toute l'actualité sportive en temps réel</p>
+            </div>
+            <div class="col-md-3">
+                <h4>💪 Performance</h4>
+                <p>Des conseils pour améliorer vos performances</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

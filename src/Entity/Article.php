@@ -3,29 +3,40 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ArticleRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ */
 class Article
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $titre;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $contenu = null;
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $contenu;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $dateCreation = null;
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $dateCreation;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $auteur = null;
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
 
     public function __construct()
     {
@@ -42,7 +53,7 @@ class Article
         return $this->titre;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitre(string $titre): self
     {
         $this->titre = $titre;
         return $this;
@@ -53,7 +64,7 @@ class Article
         return $this->contenu;
     }
 
-    public function setContenu(string $contenu): static
+    public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
         return $this;
@@ -64,7 +75,7 @@ class Article
         return $this->dateCreation;
     }
 
-    public function setDateCreation(\DateTimeImmutable $dateCreation): static
+    public function setDateCreation(\DateTimeImmutable $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
         return $this;
@@ -75,7 +86,7 @@ class Article
         return $this->auteur;
     }
 
-    public function setAuteur(?User $auteur): static
+    public function setAuteur(?User $auteur): self
     {
         $this->auteur = $auteur;
         return $this;

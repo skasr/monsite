@@ -8,33 +8,49 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'Cette adresse email est déjà utilisée')]
+/**
+ * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Table(name="`user`")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse email est déjà utilisée")
+ */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
+    /**
+     * @ORM\Column(type="string", length=180, unique=true)
+     */
+    private $email;
 
-    #[ORM\Column]
-    private array $roles = [];
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
-    #[ORM\Column]
-    private ?string $password = null;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $password;
 
-    #[ORM\Column(length: 100)]
-    private ?string $nom = null;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $nom;
 
-    #[ORM\Column(length: 100)]
-    private ?string $prenom = null;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $prenom;
 
-    #[ORM\Column(length: 15, nullable: true)]
-    private ?string $telephone = null;
+    /**
+     * @ORM\Column(type="string", length=15, nullable=true)
+     */
+    private $telephone;
 
     public function getId(): ?int
     {
@@ -46,7 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
         return $this;
@@ -57,6 +73,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
+    public function getUsername(): string
+    {
+        return $this->getUserIdentifier();
+    }
+
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -64,7 +85,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): static
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
         return $this;
@@ -75,13 +96,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
         return $this;
     }
 
-    public function eraseCredentials(): void
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
     {
     }
 
@@ -90,7 +116,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->nom;
     }
 
-    public function setNom(string $nom): static
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
         return $this;
@@ -101,7 +127,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): static
+    public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
         return $this;
@@ -112,7 +138,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->telephone;
     }
 
-    public function setTelephone(?string $telephone): static
+    public function setTelephone(?string $telephone): self
     {
         $this->telephone = $telephone;
         return $this;
