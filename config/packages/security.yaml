@@ -1,4 +1,6 @@
 security:
+    enable_authenticator_manager: true
+    
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
 
@@ -19,7 +21,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                csrf_token_generator: security.csrf.token_manager
+                enable_csrf: true
             logout:
                 path: app_logout
                 target: app_home

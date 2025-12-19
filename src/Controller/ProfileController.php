@@ -11,7 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profil', name: 'app_profile')]
+    /**
+     * @Route("/profil", name="app_profile")
+     */
     public function show(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -21,7 +23,9 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/modifier', name: 'app_profile_edit')]
+    /**
+     * @Route("/profil/modifier", name="app_profile_edit")
+     */
     public function edit(Request $request, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -43,7 +47,9 @@ class ProfileController extends AbstractController
         ]);
     }
 
-    #[Route('/profil/supprimer', name: 'app_profile_delete', methods: ['POST'])]
+    /**
+     * @Route("/profil/supprimer", name="app_profile_delete", methods={"POST"})
+     */
     public function delete(Request $request, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');

@@ -12,7 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
+    /**
+     * @Route("/contact", name="app_contact")
+     */
     public function index(Request $request, MailerInterface $mailer): Response
     {
         $form = $this->createForm(ContactType::class);
@@ -23,7 +25,7 @@ class ContactController extends AbstractController
 
             $email = (new Email())
                 ->from($data['email'])
-                ->to('contact@monsite.fr')
+                ->to('contact@sportzone.fr')
                 ->subject($data['sujet'])
                 ->text(sprintf(
                     "Message de : %s (%s)\n\n%s",

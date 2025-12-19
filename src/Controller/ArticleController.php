@@ -11,10 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/articles')]
+/**
+ * @Route("/articles")
+ */
 class ArticleController extends AbstractController
 {
-    #[Route('/', name: 'app_article_index')]
+    /**
+     * @Route("/", name="app_article_index")
+     */
     public function index(ArticleRepository $articleRepository): Response
     {
         $articles = $articleRepository->findAll();
@@ -24,7 +28,9 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/nouveau', name: 'app_article_new')]
+    /**
+     * @Route("/nouveau", name="app_article_new")
+     */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -48,7 +54,9 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_article_show', requirements: ['id' => '\d+'])]
+    /**
+     * @Route("/{id}", name="app_article_show", requirements={"id"="\d+"})
+     */
     public function show(Article $article): Response
     {
         return $this->render('article/show.html.twig', [
@@ -56,7 +64,9 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/modifier', name: 'app_article_edit', requirements: ['id' => '\d+'])]
+    /**
+     * @Route("/{id}/modifier", name="app_article_edit", requirements={"id"="\d+"})
+     */
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
@@ -83,7 +93,9 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/supprimer', name: 'app_article_delete', methods: ['POST'], requirements: ['id' => '\d+'])]
+    /**
+     * @Route("/{id}/supprimer", name="app_article_delete", methods={"POST"}, requirements={"id"="\d+"})
+     */
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
