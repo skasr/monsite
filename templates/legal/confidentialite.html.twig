@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Politique de Confidentialité - SportZone{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mb-4">Politique de Confidentialité</h1>
+    
+    <div class="card shadow">
+        <div class="card-body p-5">
+            <h3>Introduction</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio.</p>
+            
+            <h3 class="mt-4">Collecte des données</h3>
+            <p>Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.</p>
+            
+            <h3 class="mt-4">Utilisation des données</h3>
+            <p>Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit. Sed ut imperdiet nisi. Proin condimentum fermentum nunc.</p>
+            
+            <h3 class="mt-4">Protection des données</h3>
+            <p>Etiam pharetra, erat sed fermentum feugiat, velit mauris egestas quam, ut aliquam massa nisl quis neque. Suspendisse in orci enim.</p>
+            
+            <h3 class="mt-4">Cookies</h3>
+            <p>Vivamus fermentum semper porta. Nunc diam velit, adipiscing ut tristique vitae, sagittis vel odio. Maecenas convallis ullamcorper ultricies.</p>
+            
+            <h3 class="mt-4">Vos droits</h3>
+            <p>Curabitur ornare, ligula semper consectetur sagittis, nisi diam iaculis velit, id fringilla sem nunc vel mi. Nam dictum, odio nec pretium volutpat, arcu ante placerat erat, non tristique elit urna et turpis.</p>
+            
+            <h3 class="mt-4">Contact</h3>
+            <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter via notre <a href="{{ path('app_contact') }}">formulaire de contact</a>.</p>
+            
+            <p class="mt-4"><strong>Date de dernière mise à jour : {{ 'now'|date('d/m/Y') }}</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

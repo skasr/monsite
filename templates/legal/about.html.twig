@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Qui sommes-nous ? - SportZone{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mb-4">Qui sommes-nous ?</h1>
+    
+    <div class="card shadow mb-4">
+        <div class="card-body p-5">
+            <h3>Notre mission</h3>
+            <p class="lead">SportZone est une plateforme dédiée aux passionnés de sport. Notre mission est de créer une communauté où les amateurs et professionnels peuvent partager leur passion, leurs analyses et leurs expériences.</p>
+            
+            <h3 class="mt-5">L'équipe</h3>
+            <div class="row mt-4">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="mb-3" style="font-size: 4rem;">👨‍💼</div>
+                            <h5>Jean Dupont</h5>
+                            <p class="text-muted">Fondateur & CEO</p>
+                            <p>Passionné de football depuis toujours, Jean a créé SportZone pour rassembler la communauté sportive.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="mb-3" style="font-size: 4rem;">👩‍💻</div>
+                            <h5>Marie Martin</h5>
+                            <p class="text-muted">Directrice Technique</p>
+                            <p>Développeuse expérimentée et sportive accomplie, Marie assure le bon fonctionnement de la plateforme.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 text-center mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="mb-3" style="font-size: 4rem;">🎨</div>
+                            <h5>Pierre Durand</h5>
+                            <p class="text-muted">Responsable Contenu</p>
+                            <p>Journaliste sportif de formation, Pierre veille à la qualité des contenus publiés sur SportZone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="mt-5">Nos valeurs</h3>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-3">
+                    <h5>🏆 Passion</h5>
+                    <p>Nous sommes animés par une véritable passion pour le sport sous toutes ses formes.</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h5>🤝 Communauté</h5>
+                    <p>Nous croyons en la force du partage et de l'entraide entre passionnés.</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h5>✨ Qualité</h5>
+                    <p>Nous nous engageons à offrir une plateforme de qualité avec des contenus pertinents.</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <h5>🚀 Innovation</h5>
+                    <p>Nous travaillons constamment à améliorer l'expérience de nos utilisateurs.</p>
+                </div>
+            </div>
+            
+            <div class="mt-5 text-center">
+                <h4>Rejoignez-nous !</h4>
+                <p>Vous partagez nos valeurs ? <a href="{{ path('app_register') }}">Inscrivez-vous</a> et rejoignez la communauté SportZone !</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
