@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.titre }} - SportZone{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="mb-3">
+            <a href="{{ path('app_article_index') }}" class="btn btn-secondary">← Retour aux articles</a>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-body p-5">
+                <h1 class="mb-4">{{ article.titre }}</h1>
+                
+                <div class="mb-4 text-muted">
+                    <p>
+                        <strong>Auteur :</strong> {{ article.auteur.prenom }} {{ article.auteur.nom }}<br>
+                        <strong>Publié le :</strong> {{ article.dateCreation|date('d/m/Y à H:i') }}
+                    </p>
+                </div>
+
+                <hr>
+
+                <div class="article-content">
+                    {{ article.contenu|nl2br }}
+                </div>
+
+                {% if app.user and app.user == article.auteur %}
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn btn-warning">✏️ Modifier</a>
+                        
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            🗑️ Supprimer
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if app.user and app.user == article.auteur %}
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet article ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <form method="post" action="{{ path('app_article_delete', {'id': article.id}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

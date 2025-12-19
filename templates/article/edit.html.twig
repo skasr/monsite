@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'article - SportZone{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-sport text-white">
+                <h3 class="mb-0">✏️ Modifier l'article</h3>
+            </div>
+            <div class="card-body">
+                {{ form_start(articleForm) }}
+                    <div class="mb-3">
+                        {{ form_label(articleForm.titre, 'Titre de l\'article') }}
+                        {{ form_widget(articleForm.titre, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(articleForm.titre) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(articleForm.contenu, 'Contenu') }}
+                        {{ form_widget(articleForm.contenu, {'attr': {'class': 'form-control', 'rows': 15}}) }}
+                        {{ form_errors(articleForm.contenu) }}
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-secondary">Annuler</a>
+                        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                    </div>
+                {{ form_end(articleForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

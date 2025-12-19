@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel article - SportZone{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-sport text-white">
+                <h3 class="mb-0">✍️ Créer un nouvel article</h3>
+            </div>
+            <div class="card-body">
+                {{ form_start(articleForm) }}
+                    <div class="mb-3">
+                        {{ form_label(articleForm.titre, 'Titre de l\'article') }}
+                        {{ form_widget(articleForm.titre, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(articleForm.titre) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(articleForm.contenu, 'Contenu') }}
+                        {{ form_widget(articleForm.contenu, {'attr': {'class': 'form-control', 'rows': 15}}) }}
+                        {{ form_errors(articleForm.contenu) }}
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ path('app_article_index') }}" class="btn btn-secondary">Annuler</a>
+                        <button type="submit" class="btn btn-success">Publier l'article</button>
+                    </div>
+                {{ form_end(articleForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

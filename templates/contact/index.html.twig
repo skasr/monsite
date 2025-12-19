@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - SportZone{% endblock %}
+
+{% block body %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-sport text-white">
+                <h3 class="mb-0">📧 Nous contacter</h3>
+            </div>
+            <div class="card-body p-5">
+                <p class="lead mb-4">Vous avez une question ? N'hésitez pas à nous contacter !</p>
+
+                {{ form_start(contactForm) }}
+                    <div class="mb-3">
+                        {{ form_label(contactForm.nom, 'Votre nom') }}
+                        {{ form_widget(contactForm.nom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.nom) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(contactForm.email, 'Votre email') }}
+                        {{ form_widget(contactForm.email, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.email) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(contactForm.sujet, 'Sujet') }}
+                        {{ form_widget(contactForm.sujet, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(contactForm.sujet) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(contactForm.message, 'Votre message') }}
+                        {{ form_widget(contactForm.message, {'attr': {'class': 'form-control', 'rows': 8}}) }}
+                        {{ form_errors(contactForm.message) }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100">Envoyer le message</button>
+                {{ form_end(contactForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
